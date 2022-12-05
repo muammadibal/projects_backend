@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "PivotPermissionRole",
-      updatedAt: "updateTimestamp",
+      
     }
   );
   return PivotPermissionRole;

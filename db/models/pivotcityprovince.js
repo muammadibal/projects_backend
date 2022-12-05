@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "PivotCityProvince",
-      updatedAt: "updateTimestamp",
+      
     }
   );
   return PivotCityProvince;

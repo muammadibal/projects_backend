@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "City",
-      updatedAt: "updateTimestamp",
+      
     }
   );
   return City;

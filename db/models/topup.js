@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Topup",
-      updatedAt: "updateTimestamp",
+      
     }
   );
   return Topup;

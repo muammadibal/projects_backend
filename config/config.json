@@ -4,7 +4,7 @@
     "password": null,
     "database": "db_projects_dev",
     "host": "127.0.0.1",
-    "port": 3306,
+    "port": 3307,
     "dialect": "mysql"
   },
   "test": {
@@ -12,7 +12,7 @@
     "password": null,
     "database": "db_projects_test",
     "host": "127.0.0.1",
-    "port": 3306,
+    "port": 3307,
     "dialect": "mysql"
   },
   "production": {
@@ -20,7 +20,7 @@
     "password": null,
     "database": "db_projects_production",
     "host": "127.0.0.1",
-    "port": 3306,
+    "port": 3307,
     "dialect": "mysql"
   }
 }

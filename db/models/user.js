@@ -1,6 +1,5 @@
 "use strict";
-const { Model, STRING, INTEGER, DATE } = require("sequelize");
-const db = require(".");
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -14,15 +13,26 @@ module.exports = (sequelize, DataTypes) => {
   }
   User.init(
     {
-      email: STRING,
-      password: STRING,
-      role: INTEGER,
-      deletedAt: DATE,
+      email: {
+        type: DataTypes.STRING,
+        validate: {
+          isEmail: true,
+        }
+      },
+      password: {
+        type: DataTypes.STRING,
+        validate: {
+          min: 8,
+          // is: /^(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\D*\d)(?=[^!#%]*[!#%])[A-Za-z0-9!#%]{8,32}$/
+        }
+      },
+      role: DataTypes.INTEGER,
+      deletedAt: DataTypes.DATE,
     },
     {
-      sequelize: db.sequelize,
+      sequelize,
       modelName: "User",
-      updatedAt: "updateTimestamp",
+
     }
   );
   return User;

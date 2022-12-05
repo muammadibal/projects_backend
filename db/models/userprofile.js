@@ -60,7 +60,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "UserProfile",
-      updatedAt: "updateTimestamp",
+      
     }
   );
   return UserProfile;

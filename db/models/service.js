@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Service",
-      updatedAt: "updateTimestamp",
+      
     }
   );
   return Service;

@@ -5,7 +5,8 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const { sequelize } = require("./db/models");
 var indexRouter = require("./routes/index");
-var userRouter = require("./api/user/route");
+var userRouter = require("./api/user/router");
+require('dotenv').config()
 
 var app = express();
 

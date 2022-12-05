@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "UserWallet",
-      updatedAt: "updateTimestamp",
+      
     }
   );
   return UserWallet;

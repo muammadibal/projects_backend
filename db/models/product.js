@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Product",
-      updatedAt: "updateTimestamp",
+      
     }
   );
   return Product;
