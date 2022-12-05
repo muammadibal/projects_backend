@@ -1,5 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
+const City = require("./city");
+
 module.exports = (sequelize, DataTypes) => {
   class Province extends Model {
     /**
@@ -14,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
   Province.init(
     {
       name: DataTypes.STRING,
-      cityId: DataTypes.INTEGER,
+      cityId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: City,
+          key: "id",
+        },
+      },
       deletedAt: DataTypes.DATE,
     },
     {

@@ -1,5 +1,10 @@
 "use strict";
 const { Model } = require("sequelize");
+const User = require("./user");
+const Gender = require("./gender");
+const City = require("./city");
+const Province = require("./province");
+
 module.exports = (sequelize, DataTypes) => {
   class UserProfile extends Model {
     /**
@@ -13,18 +18,42 @@ module.exports = (sequelize, DataTypes) => {
   }
   UserProfile.init(
     {
-      userId: DataTypes.INTEGER,
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: User,
+          key: "id",
+        },
+      },
       username: DataTypes.STRING,
       firstName: DataTypes.STRING,
       middleName: DataTypes.STRING,
       lastName: DataTypes.STRING,
       birthDate: DataTypes.DATE,
       about: DataTypes.TEXT,
-      gender: DataTypes.INTEGER,
+      genderId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Gender,
+          key: "id",
+        },
+      },
       avatar: DataTypes.TEXT,
       location: DataTypes.STRING,
-      city: DataTypes.INTEGER,
-      province: DataTypes.INTEGER,
+      cityId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: City,
+          key: "id",
+        },
+      },
+      provinceId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Province,
+          key: "id",
+        },
+      },
       zipCode: DataTypes.INTEGER,
       deletedAt: DataTypes.DATE,
     },

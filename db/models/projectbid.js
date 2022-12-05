@@ -1,5 +1,9 @@
 "use strict";
 const { Model } = require("sequelize");
+const User = require("./user");
+const Project = require("./project");
+const UserPortfolio = require("./userportfolio");
+
 module.exports = (sequelize, DataTypes) => {
   class ProjectBid extends Model {
     /**
@@ -13,10 +17,28 @@ module.exports = (sequelize, DataTypes) => {
   }
   ProjectBid.init(
     {
-      userId: DataTypes.INTEGER,
-      projectId: DataTypes.INTEGER,
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: User,
+          key: "id",
+        },
+      },
+      projectId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Project,
+          key: "id",
+        },
+      },
       isChoosen: DataTypes.INTEGER,
-      userPortfolioId: DataTypes.INTEGER,
+      userPortfolioId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: UserPortfolio,
+          key: "id",
+        },
+      },
       deletedAt: DataTypes.DATE,
     },
     {

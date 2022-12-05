@@ -1,5 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
+const User = require("./user");
+
 module.exports = (sequelize, DataTypes) => {
   class UserPortfolio extends Model {
     /**
@@ -13,7 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   UserPortfolio.init(
     {
-      userId: DataTypes.INTEGER,
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: User,
+          key: "id",
+        },
+      },
       name: DataTypes.STRING,
       description: DataTypes.TEXT,
       deletedAt: DataTypes.DATE,

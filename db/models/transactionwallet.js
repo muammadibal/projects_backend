@@ -1,5 +1,9 @@
 "use strict";
 const { Model } = require("sequelize");
+const Transaction = require("./transaction");
+const User = require("./user");
+const TopUp = require("./topup");
+
 module.exports = (sequelize, DataTypes) => {
   class TransactionWallet extends Model {
     /**
@@ -13,9 +17,27 @@ module.exports = (sequelize, DataTypes) => {
   }
   TransactionWallet.init(
     {
-      transactionId: DataTypes.INTEGER,
-      userId: DataTypes.INTEGER,
-      topupId: DataTypes.INTEGER,
+      transactionId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Transaction,
+          key: "id",
+        },
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: User,
+          key: "id",
+        },
+      },
+      topupId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: TopUp,
+          key: "id",
+        },
+      },
       topupAmount: DataTypes.INTEGER,
       discount: DataTypes.INTEGER,
       isDiscount: DataTypes.INTEGER,

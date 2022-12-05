@@ -1,5 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
+const Service = require("./service");
+
 module.exports = (sequelize, DataTypes) => {
   class ServiceImage extends Model {
     /**
@@ -13,7 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   }
   ServiceImage.init(
     {
-      serviceId: DataTypes.INTEGER,
+      serviceId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Service,
+          key: "id",
+        },
+      },
       imageUrl: DataTypes.TEXT,
       deletedAt: DataTypes.DATE,
     },

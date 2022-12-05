@@ -1,5 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
+const CategoryTransactionStatusId = require("./categorytransactionstatus");
+
 module.exports = (sequelize, DataTypes) => {
   class Transaction extends Model {
     /**
@@ -15,7 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     {
       transactionCode: DataTypes.STRING,
       transactionPrice: DataTypes.INTEGER,
-      categoryTransactionStatusId: DataTypes.INTEGER,
+      categoryTransactionStatusId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: CategoryTransactionStatusId,
+          key: "id",
+        },
+      },
       paymentUrl: DataTypes.TEXT,
       paymentVerifyImage: DataTypes.TEXT,
       deletedAt: DataTypes.DATE,

@@ -1,5 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
+const City = require("./city");
+const Province = require("./province");
 module.exports = (sequelize, DataTypes) => {
   class PivotCityProvince extends Model {
     /**
@@ -13,8 +15,20 @@ module.exports = (sequelize, DataTypes) => {
   }
   PivotCityProvince.init(
     {
-      cityId: DataTypes.INTEGER,
-      provinceId: DataTypes.INTEGER,
+      cityId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: City,
+          key: "id",
+        },
+      },
+      provinceId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Province,
+          key: "id",
+        },
+      },
       deletedAt: DataTypes.DATE,
     },
     {

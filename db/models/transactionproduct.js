@@ -1,5 +1,9 @@
 "use strict";
 const { Model } = require("sequelize");
+const Transaction = require("./transaction");
+const User = require("./user");
+const Product = require("./product");
+
 module.exports = (sequelize, DataTypes) => {
   class TransactionProduct extends Model {
     /**
@@ -13,9 +17,27 @@ module.exports = (sequelize, DataTypes) => {
   }
   TransactionProduct.init(
     {
-      transactionId: DataTypes.INTEGER,
-      userId: DataTypes.INTEGER,
-      productId: DataTypes.INTEGER,
+      transactionId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Transaction,
+          key: "id",
+        },
+      },
+      userId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: User,
+          key: "id",
+        },
+      },
+      productId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Product,
+          key: "id",
+        },
+      },
       productName: DataTypes.STRING,
       productPrice: DataTypes.INTEGER,
       productThumbnail: DataTypes.TEXT,

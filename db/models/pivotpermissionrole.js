@@ -1,5 +1,8 @@
 "use strict";
 const { Model } = require("sequelize");
+const Role = require("./role");
+const Permission = require("./permission");
+
 module.exports = (sequelize, DataTypes) => {
   class PivotPermissionRole extends Model {
     /**
@@ -13,8 +16,20 @@ module.exports = (sequelize, DataTypes) => {
   }
   PivotPermissionRole.init(
     {
-      roleId: DataTypes.INTEGER,
-      permissionId: DataTypes.INTEGER,
+      roleId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Role,
+          key: "id",
+        },
+      },
+      permissionId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: Permission,
+          key: "id",
+        },
+      },
       deletedAt: DataTypes.DATE,
     },
     {
