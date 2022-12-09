@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      UserPortfolio.belongsTo(models.User, {
+        foreignKey: "id",
+      });
+      UserPortfolio.hasMany(models.UserPortfolioImage, {
+        foreignKey: "portfolioId",
+      });
     }
   }
   UserPortfolio.init(
@@ -29,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "UserPortfolio",
-      
     }
   );
   return UserPortfolio;

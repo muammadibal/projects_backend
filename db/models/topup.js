@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Topup.belongsToMany(models.TransactionWallet, {
+        foreignKey: "topupId",
+      });
     }
   }
   Topup.init(
@@ -21,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Topup",
-      
     }
   );
   return Topup;

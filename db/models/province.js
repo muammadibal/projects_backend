@@ -10,6 +10,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      Province.belongsToMany(models.PivotCityProvince, {
+        foreignKey: "provinceId",
+      });
+      Province.hasOne(models.City, {
+        foreignKey: "id",
+      });
       // define association here
     }
   }
@@ -28,7 +34,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Province",
-      
     }
   );
   return Province;

@@ -12,6 +12,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      Product.belongsToMany(models.User, {
+        foreignKey: "id",
+      });
+      Product.belongsToMany(models.TransactionProduct, {
+        foreignKey: "productId",
+      });
       // define association here
     }
   }
@@ -53,7 +59,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Product",
-      
     }
   );
   return Product;

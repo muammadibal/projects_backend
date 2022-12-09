@@ -10,7 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      UserWallet.belongsTo(models.User, {
+        foreignKey: "id",
+      });
     }
   }
   UserWallet.init(
@@ -28,7 +30,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "UserWallet",
-      
     }
   );
   return UserWallet;
