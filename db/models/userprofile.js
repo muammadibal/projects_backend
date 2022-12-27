@@ -13,8 +13,17 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UserProfile.belongsTo(models.User, {
-        foreignKey: "id",
+      this.hasOne(models.User, {
+        foreignKey: "userId"
+      });
+      this.hasOne(models.Gender, {
+        foreignKey: "genderId"
+      });
+      this.hasOne(models.City, {
+        foreignKey: "cityId"
+      });
+      this.hasOne(models.Province, {
+        foreignKey: "provinceId"
       });
     }
   }
@@ -23,9 +32,9 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: User,
-          key: "id",
-        },
+          model: "User",
+          key: "id"
+        }
       },
       username: DataTypes.STRING,
       firstName: DataTypes.STRING,
@@ -36,32 +45,32 @@ module.exports = (sequelize, DataTypes) => {
       genderId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Gender,
-          key: "id",
-        },
+          model: "Gender",
+          key: "id"
+        }
       },
       avatar: DataTypes.TEXT,
       location: DataTypes.STRING,
       cityId: {
         type: DataTypes.INTEGER,
         references: {
-          model: City,
-          key: "id",
-        },
+          model: "City",
+          key: "id"
+        }
       },
       provinceId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Province,
-          key: "id",
-        },
+          model: "Province",
+          key: "id"
+        }
       },
       zipCode: DataTypes.INTEGER,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "UserProfile",
+      modelName: "UserProfile"
     }
   );
   return UserProfile;

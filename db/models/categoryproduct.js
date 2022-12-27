@@ -14,12 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   CategoryProduct.init(
     {
       name: DataTypes.STRING,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "CategoryProduct",
-      
+      modelName: "CategoryProduct"
     }
   );
   return CategoryProduct;

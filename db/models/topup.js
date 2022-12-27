@@ -7,22 +7,18 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
-    static associate(models) {
-      Topup.belongsToMany(models.TransactionWallet, {
-        foreignKey: "topupId",
-      });
-    }
+    static associate(models) {}
   }
   Topup.init(
     {
       amount: DataTypes.INTEGER,
       discount: DataTypes.INTEGER,
       isDiscount: DataTypes.INTEGER,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "Topup",
+      modelName: "Topup"
     }
   );
   return Topup;

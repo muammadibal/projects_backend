@@ -10,20 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.hasOne(models.UserProfile, {
-        foreignKey: "userId",
-        onDelete: "CASCADE",
-      });
-      User.hasOne(models.UserPortfolio, {
-        foreignKey: "userId",
-        onDelete: "CASCADE",
-      });
-      User.hasOne(models.UserWallet, {
-        foreignKey: "userId",
-        onDelete: "CASCADE",
-      });
-      User.hasMany(models.TransactionWallet, {
-        foreignKey: "userId",
+      this.hasOne(models.Role, {
+        foreignKey: "roleId"
       });
       // define association here
     }
@@ -33,22 +21,28 @@ module.exports = (sequelize, DataTypes) => {
       email: {
         type: DataTypes.STRING,
         validate: {
-          isEmail: true,
-        },
+          isEmail: true
+        }
       },
       password: {
         type: DataTypes.STRING,
         validate: {
-          min: 8,
+          min: 8
           // is: /^(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z])(?=\D*\d)(?=[^!#%]*[!#%])[A-Za-z0-9!#%]{8,32}$/
-        },
+        }
       },
-      role: DataTypes.INTEGER,
-      deletedAt: DataTypes.DATE,
+      roleId: {
+        type: DataTypes.INTEGER,
+        references: {
+          model: "Role",
+          key: "id"
+        }
+      },
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: "User"
     }
   );
   return User;

@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      TransactionProduct.hasMany(models.Transaction, {
-        foreignKey: "id",
+      this.hasMany(models.Transaction, {
+        foreignKey: "transactionId"
       });
-      TransactionProduct.belongsToMany(models.User, {
-        foreignKey: "id",
+      this.belongsToMany(models.User, {
+        foreignKey: "userId"
       });
-      TransactionProduct.hasMany(models.Product, {
-        foreignKey: "id",
+      this.hasMany(models.Product, {
+        foreignKey: "productId"
       });
       // define association here
     }
@@ -29,34 +29,34 @@ module.exports = (sequelize, DataTypes) => {
       transactionId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Transaction,
-          key: "id",
-        },
+          model: "Transaction",
+          key: "id"
+        }
       },
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: User,
-          key: "id",
-        },
+          model: "User",
+          key: "id"
+        }
       },
       productId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Product,
-          key: "id",
-        },
+          model: "Product",
+          key: "id"
+        }
       },
       productName: DataTypes.STRING,
       productPrice: DataTypes.INTEGER,
       productThumbnail: DataTypes.TEXT,
       discount: DataTypes.INTEGER,
       isDiscount: DataTypes.INTEGER,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "TransactionProduct",
+      modelName: "TransactionProduct"
     }
   );
   return TransactionProduct;

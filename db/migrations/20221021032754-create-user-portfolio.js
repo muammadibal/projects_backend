@@ -7,32 +7,37 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT
       },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "User",
+          key: "id"
+        }
       },
       name: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       description: {
-        type: Sequelize.TEXT,
-      },
-      deletedAt: {
-        allowNull: true,
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("UserPortfolios");
-  },
+  }
 };

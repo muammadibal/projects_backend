@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      this.hasMany(models.User, {
+        foreignKey: "userId"
+      });
+      this.hasMany(models.Product, {
+        foreignKey: "productId"
+      });
       // define association here
     }
   }
@@ -19,24 +25,23 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: User,
-          key: "id",
-        },
+          model: "User",
+          key: "id"
+        }
       },
       productId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Product,
-          key: "id",
-        },
+          model: "Product",
+          key: "id"
+        }
       },
       quantity: DataTypes.INTEGER,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "ProductCart",
-      
+      modelName: "ProductCart"
     }
   );
   return ProductCart;

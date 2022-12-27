@@ -7,29 +7,39 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT
       },
       cityId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "City",
+          key: "id"
+        }
       },
       provinceId: {
         type: Sequelize.INTEGER,
-      },
-      deletedAt: {
-        allowNull: true,
-        type: Sequelize.DATE,
+        allowNull: false,
+        references: {
+          model: "Province",
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("PivotCityProvinces");
-  },
+  }
 };

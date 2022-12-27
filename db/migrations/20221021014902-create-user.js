@@ -7,34 +7,39 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT
       },
       email: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
       password: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: false
       },
-      role: {
+      roleId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Role",
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       deletedAt: {
         allowNull: true,
-        type: Sequelize.DATE,
-      },
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Users");
-  },
+  }
 };

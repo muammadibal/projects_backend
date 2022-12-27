@@ -14,12 +14,11 @@ module.exports = (sequelize, DataTypes) => {
   CategoryProductCondition.init(
     {
       name: DataTypes.STRING,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "CategoryProductCondition",
-      
+      modelName: "CategoryProductCondition"
     }
   );
   return CategoryProductCondition;

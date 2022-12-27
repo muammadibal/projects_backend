@@ -10,17 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Transaction.belongsToMany(models.TransactionWallet, {
-        foreignKey: "transactionId",
-      });
-      Transaction.belongsToMany(models.TransactionProject, {
-        foreignKey: "transactionId",
-      });
-      Transaction.belongsToMany(models.TransactionProduct, {
-        foreignKey: "transactionId",
-      });
-      Transaction.hasMany(models.CategoryTransactionStatus, {
-        foreignKey: "id",
+      this.hasMany(models.CategoryTransactionStatus, {
+        foreignKey: "categoryTransactionStatusId"
       });
     }
   }
@@ -31,17 +22,17 @@ module.exports = (sequelize, DataTypes) => {
       categoryTransactionStatusId: {
         type: DataTypes.INTEGER,
         references: {
-          model: CategoryTransactionStatusId,
-          key: "id",
-        },
+          model: "CategoryTransactionStatus",
+          key: "id"
+        }
       },
       paymentUrl: DataTypes.TEXT,
       paymentVerifyImage: DataTypes.TEXT,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "Transaction",
+      modelName: "Transaction"
     }
   );
   return Transaction;

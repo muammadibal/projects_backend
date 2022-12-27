@@ -7,29 +7,34 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT
       },
       projectId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Project",
+          key: "id"
+        }
       },
       imageUrl: {
-        type: Sequelize.TEXT,
-      },
-      deletedAt: {
-        allowNull: true,
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("ProjectImages");
-  },
+  }
 };

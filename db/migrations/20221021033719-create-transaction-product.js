@@ -7,47 +7,62 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT
       },
       transactionId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Transaction",
+          key: "id"
+        }
       },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "User",
+          key: "id"
+        }
       },
       productId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Product",
+          key: "id"
+        }
       },
       productName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       productPrice: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       productThumbnail: {
-        type: Sequelize.TEXT,
+        type: Sequelize.TEXT
       },
       discount: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       isDiscount: {
-        type: Sequelize.INTEGER,
-      },
-      deletedAt: {
-        allowNull: true,
-        type: Sequelize.DATE,
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("TransactionProducts");
-  },
+  }
 };

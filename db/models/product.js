@@ -12,11 +12,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Product.belongsToMany(models.User, {
-        foreignKey: "id",
+      this.hasMany(models.User, {
+        foreignKey: "userId"
       });
-      Product.belongsToMany(models.TransactionProduct, {
-        foreignKey: "productId",
+      this.hasMany(models.CategoryProduct, {
+        foreignKey: "categoryProductId"
+      });
+      this.hasMany(models.CategoryProductCondition, {
+        foreignKey: "categoryProductConditionId"
       });
       // define association here
     }
@@ -26,17 +29,17 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: User,
-          key: "id",
-        },
+          model: "User",
+          key: "id"
+        }
       },
       name: DataTypes.STRING,
       categoryProductId: {
         type: DataTypes.INTEGER,
         references: {
-          model: CategoryProduct,
-          key: "id",
-        },
+          model: "CategoryProduct",
+          key: "id"
+        }
       },
       description: DataTypes.TEXT,
       price: DataTypes.INTEGER,
@@ -46,19 +49,19 @@ module.exports = (sequelize, DataTypes) => {
       categoryProductConditionId: {
         type: DataTypes.INTEGER,
         references: {
-          model: CategoryProductCondition,
-          key: "id",
-        },
+          model: "CategoryProductCondition",
+          key: "id"
+        }
       },
       discount: DataTypes.INTEGER,
       isDiscount: DataTypes.INTEGER,
       stock: DataTypes.INTEGER,
       sold: DataTypes.INTEGER,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "Product",
+      modelName: "Product"
     }
   );
   return Product;

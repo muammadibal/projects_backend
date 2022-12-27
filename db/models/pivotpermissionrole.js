@@ -11,11 +11,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      PivotPermissionRole.belongsToMany(models.Role, {
-        foreignKey: "id",
+      this.hasMany(models.Role, {
+        foreignKey: "id"
       });
-      PivotPermissionRole.belongsToMany(models.Permission, {
-        foreignKey: "id",
+      this.hasMany(models.Permission, {
+        foreignKey: "id"
       });
       // define association here
     }
@@ -25,22 +25,22 @@ module.exports = (sequelize, DataTypes) => {
       roleId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Role,
-          key: "id",
-        },
+          model: "Role",
+          key: "id"
+        }
       },
       permissionId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Permission,
-          key: "id",
-        },
+          model: "Permission",
+          key: "id"
+        }
       },
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "PivotPermissionRole",
+      modelName: "PivotPermissionRole"
     }
   );
   return PivotPermissionRole;

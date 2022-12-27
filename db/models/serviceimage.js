@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      this.hasMany(models.Service, {
+        foreignKey: "serviceId"
+      });
       // define association here
     }
   }
@@ -18,17 +21,16 @@ module.exports = (sequelize, DataTypes) => {
       serviceId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Service,
-          key: "id",
-        },
+          model: "Service",
+          key: "id"
+        }
       },
       imageUrl: DataTypes.TEXT,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "ServiceImage",
-      
+      modelName: "ServiceImage"
     }
   );
   return ServiceImage;

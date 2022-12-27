@@ -12,6 +12,15 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
+      this.hasMany(models.User, {
+        foreignKey: "userId"
+      });
+      this.hasMany(models.Project, {
+        foreignKey: "projectId"
+      });
+      this.hasMany(models.UserPortfolio, {
+        foreignKey: "userPortfolioId"
+      });
       // define association here
     }
   }
@@ -20,31 +29,30 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: User,
-          key: "id",
-        },
+          model: "User",
+          key: "id"
+        }
       },
       projectId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Project,
-          key: "id",
-        },
+          model: "Project",
+          key: "id"
+        }
       },
       isChoosen: DataTypes.INTEGER,
       userPortfolioId: {
         type: DataTypes.INTEGER,
         references: {
-          model: UserPortfolio,
-          key: "id",
-        },
+          model: "UserPortfolio",
+          key: "id"
+        }
       },
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "ProjectBid",
-      
+      modelName: "ProjectBid"
     }
   );
   return ProjectBid;

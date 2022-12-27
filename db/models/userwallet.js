@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UserWallet.belongsTo(models.User, {
-        foreignKey: "id",
+      this.belongsTo(models.User, {
+        foreignKey: "userId"
       });
     }
   }
@@ -20,16 +20,16 @@ module.exports = (sequelize, DataTypes) => {
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: User,
-          key: "id",
-        },
+          model: "User",
+          key: "id"
+        }
       },
       balance: DataTypes.INTEGER,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "UserWallet",
+      modelName: "UserWallet"
     }
   );
   return UserWallet;

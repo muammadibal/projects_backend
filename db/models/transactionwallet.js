@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      TransactionWallet.hasMany(models.Transaction, {
-        foreignKey: "id",
+      this.hasMany(models.Transaction, {
+        foreignKey: "transactionId"
       });
-      TransactionWallet.belongsToMany(models.User, {
-        foreignKey: "id",
+      this.belongsToMany(models.User, {
+        foreignKey: "userId"
       });
-      TransactionWallet.hasMany(models.Topup, {
-        foreignKey: "id",
+      this.hasMany(models.Topup, {
+        foreignKey: "topupId"
       });
       // define association here
     }
@@ -29,32 +29,32 @@ module.exports = (sequelize, DataTypes) => {
       transactionId: {
         type: DataTypes.INTEGER,
         references: {
-          model: Transaction,
-          key: "id",
-        },
+          model: "Transaction",
+          key: "id"
+        }
       },
       userId: {
         type: DataTypes.INTEGER,
         references: {
-          model: User,
-          key: "id",
-        },
+          model: "User",
+          key: "id"
+        }
       },
       topupId: {
         type: DataTypes.INTEGER,
         references: {
-          model: TopUp,
-          key: "id",
-        },
+          model: "TopUp",
+          key: "id"
+        }
       },
       topupAmount: DataTypes.INTEGER,
       discount: DataTypes.INTEGER,
       isDiscount: DataTypes.INTEGER,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "TransactionWallet",
+      modelName: "TransactionWallet"
     }
   );
   return TransactionWallet;

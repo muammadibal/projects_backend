@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UserPortfolioImage.belongsTo(models.UserPortfolio, {
-        foreignKey: "id",
+      this.hasOne(models.UserPortfolio, {
+        foreignKey: "portfolioId"
       });
     }
   }
@@ -20,16 +20,16 @@ module.exports = (sequelize, DataTypes) => {
       portfolioId: {
         type: DataTypes.INTEGER,
         references: {
-          model: UserPortfolio,
-          key: "id",
-        },
+          model: "UserPortfolio",
+          key: "id"
+        }
       },
       imageUrl: DataTypes.TEXT,
-      deletedAt: DataTypes.DATE,
+      deletedAt: DataTypes.DATE
     },
     {
       sequelize,
-      modelName: "UserPortfolioImage",
+      modelName: "UserPortfolioImage"
     }
   );
   return UserPortfolioImage;

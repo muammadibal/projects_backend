@@ -7,38 +7,43 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT
       },
       transactionCode: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING
       },
       transactionPrice: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.INTEGER
       },
       categoryTransactionStatusId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "CategoryTransactionStatuse",
+          key: "id"
+        }
       },
       paymentUrl: {
-        type: Sequelize.TEXT,
+        type: Sequelize.TEXT
       },
       paymentVerifyImage: {
-        type: Sequelize.TEXT,
-      },
-      deletedAt: {
-        allowNull: true,
-        type: Sequelize.DATE,
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE,
+        type: Sequelize.DATE
       },
+      deletedAt: {
+        allowNull: true,
+        type: Sequelize.DATE
+      }
     });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Transactions");
-  },
+  }
 };
